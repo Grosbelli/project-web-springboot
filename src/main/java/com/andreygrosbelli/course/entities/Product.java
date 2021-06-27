@@ -18,7 +18,10 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>(); //Set para garantir que não tenha duas instâncias de category do mesmo produto. E a necessidade de instânciação é devido a necessidade de não começar nulo, porém pode ser vazia.
 
     public Product() {
