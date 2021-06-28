@@ -55,6 +55,13 @@ public class Order implements Serializable {
         return moment;
     }
 
+    public Double getTotal() {
+        double sum = 0.0;
+        for(OrderItem x : items) {
+            sum += x.getSubTotal();
+        }
+        return sum;
+    }
     public void setMoment(Instant moment) {
         this.moment = moment;
     }
@@ -88,6 +95,7 @@ public class Order implements Serializable {
             this.orderStatus = orderStatus.getCode();
         }
     }
+
 
     @Override
     public boolean equals(Object o) {
